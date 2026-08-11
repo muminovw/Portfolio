@@ -91,7 +91,7 @@ export default function App() {
 
       <div id="loader" className={loaderHidden ? 'hide' : ''}>
         <div className="loader-num">{loaderPct}</div>
-        <div className="loader-label">Your Name</div>
+        <div className="loader-label">Mustafo_Muminov</div>
         <div className="loader-bar-track">
           <div className="loader-bar-fill" style={{ width: loaderPct + '%' }}></div>
         </div>
@@ -109,7 +109,7 @@ export default function App() {
 
       <footer>
         <div className="footer-inner">
-          <div>© 2026 DEV_FOLIO</div>
+          <div>© 2026 Musatfo_Muminov</div>
           <div>Built with precision.</div>
         </div>
       </footer>

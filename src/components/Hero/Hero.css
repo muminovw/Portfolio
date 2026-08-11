@@ -1,0 +1,415 @@
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 40px 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-maxw {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+}
+
+#particleCanvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 2;
+    will-change: transform;
+}
+
+.hero-tag {
+    margin-bottom: 20px;
+    opacity: 0;
+}
+
+.hero-tag .role-cycle {
+    color: var(--ink);
+    position: relative;
+    display: inline-block;
+    min-width: 180px;
+}
+
+.hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    /* Ism yozuvi kattaligi kichiklashtirildi */
+    font-size: clamp(30px, 8vw, 95px);
+    line-height: .92;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+}
+
+.hero h1 .line {
+    display: block;
+    overflow: hidden;
+}
+
+.hero h1 .line span.line-content {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(30%) scale(1.04);
+}
+
+.hero h1 .line:nth-child(2) span.line-content {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--ink);
+}
+
+.hero h1 .line.in span.line-content {
+    transition: opacity .7s ease, filter .7s ease, transform .7s ease;
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+}
+
+.letter {
+    display: inline-block;
+    will-change: transform;
+    transition: transform .15s ease-out;
+}
+
+.hero-sub {
+    /* Pastdagi yozuv pastroqqa surildi */
+    margin-top: 36px;
+    max-width: 560px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    opacity: 0;
+}
+
+.hero-sub b {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.hero-cta {
+    /* Tugmalar pastroqqa surildi */
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    opacity: 0;
+}
+
+.fade-up {
+    transform: translateY(16px);
+}
+
+.fade-up.in {
+    transition: opacity .7s ease, transform .7s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.orbit-badge {
+    position: absolute;
+    top: 16%;
+    right: 8%;
+    width: 90px;
+    height: 90px;
+    z-index: 1;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .8s ease;
+}
+
+.orbit-badge.in {
+    opacity: 1;
+}
+
+.orbit-badge svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    animation: spin 14s linear infinite;
+}
+
+.orbit-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 14px var(--amber);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 900px) {
+    .orbit-badge {
+        display: none;
+    }
+}
+
+/* ============ Photo spotlight-neon reveal ============ */
+.photo-frame {
+    position: absolute;
+    top: 50%;
+    right: 6%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 380px;
+    z-index: 1;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    opacity: 0;
+    background: var(--panel);
+    transition: opacity .9s ease, transform .9s ease;
+}
+
+.photo-frame.in {
+    opacity: 1;
+}
+
+.photo-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-base {
+    filter: grayscale(1) contrast(1.05) brightness(.85);
+}
+
+.photo-neon {
+    position: absolute;
+    inset: 0;
+    clip-path: circle(0px at 50% 50%);
+    will-change: clip-path;
+}
+
+.photo-neon .photo-img {
+    filter: grayscale(1) contrast(1.3) brightness(1.1);
+}
+
+.photo-neon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #FF8A3D 0%, #FF3D7A 45%, #3DE0FF 100%);
+    mix-blend-mode: color;
+    opacity: .9;
+}
+
+.photo-frame .corner {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.photo-frame .corner::before,
+.photo-frame .corner::after {
+    content: '';
+    position: absolute;
+    background: var(--amber);
+}
+
+.photo-frame .corner::before {
+    width: 100%;
+    height: 1px;
+    top: 0;
+    left: 0;
+}
+
+.photo-frame .corner::after {
+    width: 1px;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.photo-frame .c-tl {
+    top: 10px;
+    left: 10px;
+}
+
+.photo-frame .c-br {
+    bottom: 10px;
+    right: 10px;
+}
+
+.photo-frame .c-br::before {
+    bottom: 0;
+    top: auto;
+}
+
+.photo-frame .c-br::after {
+    right: 0;
+    left: auto;
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    padding: 12px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    color: var(--ink-dim);
+    background: linear-gradient(0deg, rgba(0, 0, 0, .75), transparent);
+    text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+    .photo-frame {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        width: 100%;
+        max-width: 260px;
+        height: 320px;
+        margin-top: 40px;
+    }
+}
+
+.scan-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    z-index: 4;
+    top: 0;
+    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+    box-shadow: 0 0 12px var(--amber);
+    opacity: .6;
+    animation: scanSweep 3.4s ease-in-out infinite;
+}
+
+@keyframes scanSweep {
+    0%,
+    100% {
+        top: 4%;
+        opacity: 0;
+    }
+    8% {
+        opacity: .7;
+    }
+    50% {
+        top: 94%;
+        opacity: .7;
+    }
+    92% {
+        opacity: 0;
+    }
+}
+
+.dim-tag {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .06em;
+    color: var(--ink-dim);
+    background: rgba(16, 20, 24, .75);
+    border: 1px solid var(--line);
+    padding: 8px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    text-transform: uppercase;
+    transition: opacity .7s ease;
+}
+
+.dim-tag.in {
+    opacity: 1;
+}
+
+.dim-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 8px var(--amber);
+    animation: pulse 2s infinite;
+}
+
+.dim-tag-1 {
+    top: 52%;
+    right: calc(6% + 316px);
+    animation: floatTag1 5s ease-in-out infinite;
+}
+
+.dim-tag-2 {
+    top: 70%;
+    right: calc(6% + 316px);
+    animation: floatTag2 5.5s ease-in-out infinite .4s;
+}
+
+@keyframes floatTag1 {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes floatTag2 {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+@media (max-width: 1150px) {
+    .dim-tag {
+        display: none;
+    }
+}
+
+.scroll-cue {
+    position: absolute;
+    bottom: 30px; /* Pastroqqa olib kelindi */
+    left: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+}
+
+.scroll-cue .bar {
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(var(--amber), transparent);
+    animation: pulse 2s infinite;
+}
