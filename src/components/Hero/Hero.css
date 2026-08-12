@@ -175,7 +175,7 @@
     border: 1px solid var(--line);
     opacity: 0;
     background: var(--panel);
-    transition: opacity .9s ease, transform .9s ease;
+    transition: opacity .15s ease, transform .15s ease;
 }
 
 .photo-frame.in {
