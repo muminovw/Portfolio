@@ -10,15 +10,14 @@
     width: 100%;
     min-height: 100vh;
     padding: 150px 40px 90px;
+    /* margin: 100%; */
 
     overflow: hidden;
 
     background:
-        radial-gradient(
-            circle at 50% 45%,
+        radial-gradient(circle at 50% 45%,
             rgba(255, 138, 61, 0.055),
-            transparent 34%
-        ),
+            transparent 34%),
         var(--bg);
 
     isolation: isolate;
@@ -30,13 +29,17 @@
 ========================================================= */
 .about-background {
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
     z-index: -2;
     overflow: hidden;
     pointer-events: none;
-
-    background:
-        #0b0d0f;
+    background: #0b0d0f;
 }
 
 .about-noise {
@@ -58,31 +61,23 @@
     opacity: 1;
 
     background-image:
-        linear-gradient(
-            to right,
+        linear-gradient(to right,
             rgba(255, 255, 255, 0.025) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            to bottom,
+            transparent 1px),
+        linear-gradient(to bottom,
             rgba(255, 255, 255, 0.025) 1px,
-            transparent 1px
-        );
+            transparent 1px);
 
     background-size:
         64px 64px;
 
-    mask-image: linear-gradient(
-        to bottom,
-        black 0%,
-        black 100%
-    );
+    mask-image: linear-gradient(to bottom,
+            black 0%,
+            black 100%);
 
-    -webkit-mask-image: linear-gradient(
-        to bottom,
-        black 0%,
-        black 100%
-    );
+    -webkit-mask-image: linear-gradient(to bottom,
+            black 0%,
+            black 100%);
 }
 
 .about-glow {
@@ -119,6 +114,7 @@
 }
 
 @keyframes aboutGlowOne {
+
     0%,
     100% {
         transform: translate3d(0, 0, 0);
@@ -130,6 +126,7 @@
 }
 
 @keyframes aboutGlowTwo {
+
     0%,
     100% {
         transform: translate3d(0, 0, 0);
@@ -178,6 +175,7 @@
 }
 
 @keyframes orbitFloat {
+
     0%,
     100% {
         transform: rotate(-20deg) translateY(0);
@@ -219,10 +217,7 @@
         0 0 5px rgba(255, 138, 61, 0.25);
 
     animation:
-        particleFloat
-        calc(5s + (var(--i) * 0.2s))
-        ease-in-out
-        infinite;
+        particleFloat calc(5s + (var(--i) * 0.2s)) ease-in-out infinite;
 }
 
 
@@ -246,11 +241,9 @@
 
     z-index: -1;
 
-    background: radial-gradient(
-        circle,
-        rgba(255, 138, 61, 0.075),
-        transparent 65%
-    );
+    background: radial-gradient(circle,
+            rgba(255, 138, 61, 0.075),
+            transparent 65%);
 
     transition:
         left 0.35s ease,
@@ -262,13 +255,12 @@
    CONTAINER
 ========================================================= */
 
+
 .about-container {
     width: min(1250px, 100%);
     margin: 0 auto;
-
     position: relative;
 }
-
 
 /* =========================================================
    TOP BAR
@@ -343,6 +335,7 @@
 }
 
 @keyframes linePulse {
+
     0%,
     100% {
         width: 70px;
@@ -387,6 +380,7 @@
 }
 
 @keyframes scrollBounce {
+
     0%,
     100% {
         transform: translateY(0);
@@ -406,8 +400,7 @@
     display: grid;
 
     grid-template-columns:
-        minmax(380px, 0.9fr)
-        minmax(500px, 1.1fr);
+        minmax(380px, 0.9fr) minmax(500px, 1.1fr);
 
     gap: 80px;
 
@@ -427,11 +420,9 @@
     border: 1px solid var(--line);
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             rgba(255, 255, 255, 0.035),
-            transparent 40%
-        ),
+            transparent 40%),
         rgba(255, 255, 255, 0.012);
 
     overflow: hidden;
@@ -439,8 +430,7 @@
     opacity: 0;
 
     transform:
-        translateX(-50px)
-        scale(0.97);
+        translateX(-50px) scale(0.97);
 
     transition:
         opacity 1s ease,
@@ -451,8 +441,7 @@
     opacity: 1;
 
     transform:
-        translateX(0)
-        scale(1);
+        translateX(0) scale(1);
 }
 
 .about-visual::before {
@@ -462,17 +451,13 @@
     inset: 0;
 
     background:
-        linear-gradient(
-            90deg,
+        linear-gradient(90deg,
             transparent 49.5%,
             var(--line) 50%,
-            transparent 50.5%
-        ),
-        linear-gradient(
-            transparent 49.5%,
+            transparent 50.5%),
+        linear-gradient(transparent 49.5%,
             var(--line) 50%,
-            transparent 50.5%
-        );
+            transparent 50.5%);
 
     background-size: 75px 75px;
 
@@ -487,11 +472,9 @@
     inset: 0;
 
     background:
-        radial-gradient(
-            circle at 50% 60%,
+        radial-gradient(circle at 50% 60%,
             rgba(255, 138, 61, 0.13),
-            transparent 42%
-        );
+            transparent 42%);
 
     pointer-events: none;
 }
@@ -556,11 +539,9 @@
     height: 130px;
 
     background:
-        linear-gradient(
-            to bottom,
+        linear-gradient(to bottom,
             var(--amber),
-            transparent
-        );
+            transparent);
 }
 
 .visual-content {
@@ -611,6 +592,7 @@
 }
 
 @keyframes livePulse {
+
     0%,
     100% {
         opacity: 0.5;
@@ -660,6 +642,7 @@
 }
 
 @keyframes titleFloat {
+
     0%,
     100% {
         transform: translateX(0);
@@ -742,14 +725,10 @@
     top: 52%;
 
     transform:
-        translate(-50%, -50%)
-        rotate(-20deg);
+        translate(-50%, -50%) rotate(-20deg);
 
     animation:
-        visualOrbit
-        12s
-        linear
-        infinite;
+        visualOrbit 12s linear infinite;
 }
 
 .visual-orbit::before,
@@ -782,14 +761,12 @@
 @keyframes visualOrbit {
     from {
         transform:
-            translate(-50%, -50%)
-            rotate(-20deg);
+            translate(-50%, -50%) rotate(-20deg);
     }
 
     to {
         transform:
-            translate(-50%, -50%)
-            rotate(340deg);
+            translate(-50%, -50%) rotate(340deg);
     }
 }
 
@@ -886,13 +863,11 @@
         0 0 14px rgba(255, 138, 61, 0.45);
 
     animation:
-        headingLine
-        4s
-        ease-in-out
-        infinite;
+        headingLine 4s ease-in-out infinite;
 }
 
 @keyframes headingLine {
+
     0%,
     100% {
         width: 50px;
@@ -961,10 +936,7 @@
 
 .ring-one {
     animation:
-        orbRotate
-        12s
-        linear
-        infinite;
+        orbRotate 12s linear infinite;
 }
 
 .ring-two {
@@ -976,10 +948,7 @@
     border-bottom-color: transparent;
 
     animation:
-        orbRotateReverse
-        7s
-        linear
-        infinite;
+        orbRotateReverse 7s linear infinite;
 }
 
 .ring-three {
@@ -990,10 +959,7 @@
     opacity: 0.35;
 
     animation:
-        orbRotate
-        15s
-        linear
-        infinite;
+        orbRotate 15s linear infinite;
 }
 
 @keyframes orbRotate {
@@ -1092,6 +1058,8 @@
 .about-fact-card {
     min-height: 185px;
 
+    width: 100%;
+
     padding: 18px 16px;
 
     position: relative;
@@ -1181,17 +1149,15 @@
 
 .about-fact-value {
     display: inline-block;
-
     font-family: 'Archivo', sans-serif;
-
-    font-size: 24px;
-
+    font-size: clamp(18px, 2vw, 24px);
+    /* margin-left: 30px; */
+    /* Ekran kichiklashganda yoki uzun so'z kelganda avtomatik kichiklashadi */
     font-weight: 700;
-
     color: var(--ink);
-
-    transition:
-        color 0.3s ease;
+    word-break: break-word;
+    /* Uzun so'zlarni sindirib yubormasligi uchun */
+    transition: color 0.3s ease;
 }
 
 .about-fact-card:hover .about-fact-value {
@@ -1387,11 +1353,9 @@
 
 .about-service-card:hover {
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             rgba(255, 255, 255, 0.035),
-            transparent
-        );
+            transparent);
 
     transform: translateY(-5px);
 }
@@ -1440,8 +1404,7 @@
 
 .about-service-card:hover .service-symbol {
     transform:
-        rotate(12deg)
-        scale(1.1);
+        rotate(12deg) scale(1.1);
 
     border-color: var(--amber);
 
@@ -1630,13 +1593,11 @@
     color: var(--amber);
 
     animation:
-        bottomArrow
-        2s
-        ease-in-out
-        infinite;
+        bottomArrow 2s ease-in-out infinite;
 }
 
 @keyframes bottomArrow {
+
     0%,
     100% {
         transform: translateY(0);
@@ -1660,8 +1621,7 @@
 
     .about-main {
         grid-template-columns:
-            minmax(320px, 0.8fr)
-            1.2fr;
+            minmax(320px, 0.8fr) 1.2fr;
 
         gap: 50px;
     }
@@ -1799,7 +1759,6 @@
 
     .about-service-card {
         border-right: none;
-
         border-bottom: 1px solid var(--line);
     }
 
@@ -1886,6 +1845,7 @@
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {

@@ -40,6 +40,11 @@
 .zoom-pin {
     height: 300vh;
     position: relative;
+    left: 50%;
+    right: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
     overflow: clip;
     background: radial-gradient(circle at 50% 50%, rgba(255, 138, 61, .045), transparent 38%), var(--bg);
 }

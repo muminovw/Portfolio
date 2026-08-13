@@ -490,4 +490,4 @@ export default function About() {
       <div className="about-cursor-glow" />
     </section>
   );
-}
+} 
