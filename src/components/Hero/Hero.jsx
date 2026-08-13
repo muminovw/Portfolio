@@ -12,6 +12,8 @@ export default function Hero({ started }) {
   const photoFrameRef = useRef(null);
   const photoNeonRef = useRef(null);
   const line2Ref = useRef(null);
+  // CSS dan --particle-color o'zgaruvchisining rangini o'qib olish
+// const computedColor = getComputedStyle(hero).getPropertyValue('--particle-color').trim() || '#00ff66';
 
   const [role, setRole] = useState(ROLES[0]);
   const [roleVisible, setRoleVisible] = useState(true);
@@ -86,6 +88,10 @@ export default function Hero({ started }) {
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // CSS dan --amber o'zgaruvchisining rangini avtomatik o'qib olish
+      const computedColor = getComputedStyle(document.documentElement).getPropertyValue('--amber').trim() || '#00ff66';
+
       particles.forEach((p) => {
         const dx = p.x - hmx, dy = p.y - hmy;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -104,10 +110,25 @@ export default function Hero({ started }) {
         const opacity = clamp(0.08 + distFromOrigin * 0.03, 0.08, 0.9);
         ctx.beginPath();
         ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,138,61,${opacity})`;
+        
+        // Agar rang HEX formatda bo'lsa (`#00ff66`), uni rgba ga o'tkazamiz yoki to'g'ridan-to'g'ri ishlatamiz:
+        ctx.fillStyle = hexToRgba(computedColor, opacity);
         ctx.fill();
       });
       raf = requestAnimationFrame(draw);
+    }
+
+    // Hex rangni rgba ga o'tkazuvchi yordamchi funksiya
+    function hexToRgba(hex, alpha) {
+      let c = hex.replace('#', '');
+      if (c.length === 3) {
+        c = c.split('').map(x => x + x).join('');
+      }
+      const num = parseInt(c, 16);
+      const r = (num >> 16) & 255;
+      const g = (num >> 8) & 255;
+      const b = num & 255;
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
     }
 
     resizeCanvas();
@@ -203,7 +224,6 @@ export default function Hero({ started }) {
           <div className="scan-line"></div>
           <div className="corner c-tl"></div>
           <div className="corner c-br"></div>
-      
         </div>
 
         <div className={`dim-tag dim-tag-1 ${anim.dim1 ? 'in' : ''}`}>
@@ -244,7 +264,6 @@ export default function Hero({ started }) {
             <a href="#contact" className="btn btn-ghost" data-hover><span>Get in Touch</span></a>
           </div>
         </div>
-        {/* <div className={`scroll-cue fade-up ${anim.scrollCue ? 'in' : ''}`}><div className="bar"></div>SCROLL TO EXPLORE</div> */}
       </div>
     </section>
   );

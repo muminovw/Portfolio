@@ -1,6 +1,20 @@
+/* =========================================================
+   GLOBAL RANG O'ZGARUVCHILari (O'zingizga yoqqaniga o'zgartiring)
+========================================================= */
+:root {
+    --bg-primary: #090a0f;
+    --ink: #ffffff;
+    --ink-dim: #94a3b8;
+    --ink-faint: #475569;
+    --amber: #00ff66; /* Urg'u rangi (Hozir yashil, istasangiz #6366f1 yoki #f59e0b qiling) */
+    --line: rgba(255, 255, 255, 0.1);
+}
+
 body {
     max-width: 1200px;
     margin: 0 auto;
+    background-color: var(--bg-primary);
+    color: var(--ink);
 }
 
 nav {
@@ -23,7 +37,7 @@ nav.show {
 }
 
 nav.scrolled {
-    background: rgba(11, 13, 15, .85);
+    background: rgba(9, 10, 15, 0.85);
     border-bottom: 1px solid var(--line);
 }
 
@@ -111,7 +125,7 @@ nav.scrolled {
         right: -100%;
         width: 100%;
         height: 100vh;
-        background: rgba(11, 13, 15, 0.98);
+        background: rgba(9, 10, 15, 0.98);
         backdrop-filter: blur(12px);
         flex-direction: column;
         justify-content: center;
