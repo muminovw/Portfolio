@@ -5,7 +5,7 @@ const facts = [
   {
     number: '01',
     label: 'Age',
-    value: '24',
+    value: '15',
     suffix: 'Years old',
   },
   {
@@ -17,7 +17,7 @@ const facts = [
   {
     number: '03',
     label: 'Experience',
-    value: '4+',
+    value: '58+',
     suffix: 'Years',
   },
   {
