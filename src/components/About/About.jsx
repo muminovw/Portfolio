@@ -17,7 +17,7 @@ const facts = [
   {
     number: '03',
     label: 'Experience',
-    value: '58+',
+    value: '4+',
     suffix: 'Years',
   },
   {
@@ -55,14 +55,19 @@ const services = [
   },
 ];
 
+/* =========================================================
+   ANIMATED NUMBER
+========================================================= */
+
 function AnimatedNumber({ children }) {
   const ref = useRef(null);
 
   useEffect(() => {
     const element = ref.current;
+
     if (!element) return;
 
-    const target = element.dataset.value;
+    const target = String(element.dataset.value || '');
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -87,7 +92,10 @@ function AnimatedNumber({ children }) {
           );
 
           const eased = 1 - Math.pow(1 - progress, 3);
-          const currentValue = Math.floor(finalValue * eased);
+
+          const currentValue = Math.floor(
+            finalValue * eased
+          );
 
           element.textContent = currentValue;
 
@@ -99,9 +107,12 @@ function AnimatedNumber({ children }) {
         };
 
         requestAnimationFrame(animate);
+
         observer.disconnect();
       },
-      { threshold: 0.5 }
+      {
+        threshold: 0.35,
+      }
     );
 
     observer.observe(element);
@@ -120,40 +131,67 @@ function AnimatedNumber({ children }) {
   );
 }
 
-function FactCard({ number, label, value, suffix }) {
+/* =========================================================
+   FACT CARD
+========================================================= */
+
+function FactCard({
+  number,
+  label,
+  value,
+  suffix,
+}) {
+  const isTextValue =
+    value === 'Tashkent' ||
+    value === 'Available';
+
+  const numericValue = value.replace('+', '');
+
   return (
     <article className="about-fact-card">
       <div className="fact-card-top">
-        <span className="fact-number">{number}</span>
+        <span className="fact-number">
+          {number}
+        </span>
 
         <span className="fact-dot">
           <span />
         </span>
       </div>
 
-      <div className="fact-label">{label}</div>
+      <div className="fact-label">
+        {label}
+      </div>
 
       <div className="fact-value-row">
-        {value === 'Tashkent' || value === 'Available' ? (
+        {isTextValue ? (
           <span
             className={`about-fact-value ${
-              value === 'Available' ? 'available-value' : ''
+              value === 'Available'
+                ? 'available-value'
+                : 'location-value'
             }`}
           >
             {value}
           </span>
         ) : (
-          <AnimatedNumber>
-            {value.replace('+', '')}
-          </AnimatedNumber>
-        )}
+          <>
+            <AnimatedNumber>
+              {numericValue}
+            </AnimatedNumber>
 
-        {value === '4+' && (
-          <span className="value-plus">+</span>
+            {value.includes('+') && (
+              <span className="value-plus">
+                +
+              </span>
+            )}
+          </>
         )}
       </div>
 
-      <span className="fact-suffix">{suffix}</span>
+      <span className="fact-suffix">
+        {suffix}
+      </span>
 
       <div className="fact-line">
         <span />
@@ -162,11 +200,22 @@ function FactCard({ number, label, value, suffix }) {
   );
 }
 
-function ServiceCard({ number, title, text, symbol }) {
+/* =========================================================
+   SERVICE CARD
+========================================================= */
+
+function ServiceCard({
+  number,
+  title,
+  text,
+  symbol,
+}) {
   return (
     <article className="about-service-card">
       <div className="service-card-head">
-        <span className="service-number">{number}</span>
+        <span className="service-number">
+          {number}
+        </span>
 
         <span className="service-symbol">
           {symbol}
@@ -179,7 +228,9 @@ function ServiceCard({ number, title, text, symbol }) {
         <p>{text}</p>
       </div>
 
-      <div className="service-arrow">↗</div>
+      <div className="service-arrow">
+        ↗
+      </div>
 
       <div className="service-progress">
         <span />
@@ -188,36 +239,50 @@ function ServiceCard({ number, title, text, symbol }) {
   );
 }
 
+/* =========================================================
+   ABOUT
+========================================================= */
+
 export default function About() {
   const sectionRef = useRef(null);
+
+  /* =======================================================
+     REVEAL ANIMATIONS
+  ======================================================= */
 
   useEffect(() => {
     const section = sectionRef.current;
 
     if (!section) return;
 
-    const revealElements =
+    const elements =
       section.querySelectorAll('[data-reveal]');
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
+            entry.target.classList.add(
+              'is-visible'
+            );
           }
         });
       },
       {
-        threshold: 0.12,
+        threshold: 0.08,
       }
     );
 
-    revealElements.forEach((element) => {
+    elements.forEach((element) => {
       observer.observe(element);
     });
 
     return () => observer.disconnect();
   }, []);
+
+  /* =======================================================
+     MOUSE GLOW
+  ======================================================= */
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -225,21 +290,36 @@ export default function About() {
     if (!section) return;
 
     const handlePointerMove = (event) => {
-      const rect = section.getBoundingClientRect();
+      if (window.innerWidth <= 768) return;
+
+      const rect =
+        section.getBoundingClientRect();
 
       const x =
-        ((event.clientX - rect.left) / rect.width) * 100;
+        ((event.clientX - rect.left) /
+          rect.width) *
+        100;
 
       const y =
-        ((event.clientY - rect.top) / rect.height) * 100;
+        ((event.clientY - rect.top) /
+          rect.height) *
+        100;
 
-      section.style.setProperty('--mouse-x', `${x}%`);
-      section.style.setProperty('--mouse-y', `${y}%`);
+      section.style.setProperty(
+        '--mouse-x',
+        `${x}%`
+      );
+
+      section.style.setProperty(
+        '--mouse-y',
+        `${y}%`
+      );
     };
 
     section.addEventListener(
       'pointermove',
-      handlePointerMove
+      handlePointerMove,
+      { passive: true }
     );
 
     return () => {
@@ -256,10 +336,14 @@ export default function About() {
       className="about-section"
       id="about"
     >
-      {/* Background */}
+      {/* =================================================
+          FULL BACKGROUND
+      ================================================= */}
+
       <div className="about-background">
         <div className="about-noise" />
         <div className="about-grid-lines" />
+
         <div className="about-glow about-glow-one" />
         <div className="about-glow about-glow-two" />
 
@@ -267,26 +351,44 @@ export default function About() {
         <div className="about-orbit orbit-two" />
 
         <div className="about-particles">
-          {Array.from({ length: 26 }).map((_, index) => (
-            <span
-              key={index}
-              style={{
-                '--i': index,
-              }}
-            />
-          ))}
+          {Array.from({ length: 26 }).map(
+            (_, index) => (
+              <span
+                key={index}
+                style={{
+                  '--i': index,
+                  '--left': `${
+                    (index * 37) % 100
+                  }%`,
+                  '--top': `${
+                    (index * 67) % 100
+                  }%`,
+                }}
+              />
+            )
+          )}
         </div>
       </div>
 
+      {/* =================================================
+          MAIN CONTAINER
+      ================================================= */}
+
       <div className="about-container">
 
-        {/* Top navigation line */}
+        {/* =================================================
+            TOP BAR
+        ================================================= */}
+
         <div
           className="about-topbar"
           data-reveal
         >
           <div className="about-section-id">
-            <span className="id-mark">//</span>
+            <span className="id-mark">
+              //
+            </span>
+
             <span>About me</span>
           </div>
 
@@ -299,14 +401,22 @@ export default function About() {
               ↓
             </span>
 
-            <span>SCROLL TO EXPLORE</span>
+            <span>
+              SCROLL TO EXPLORE
+            </span>
           </div>
         </div>
 
-        {/* Main */}
+        {/* =================================================
+            MAIN CONTENT
+        ================================================= */}
+
         <div className="about-main">
 
-          {/* LEFT SIDE */}
+          {/* =================================================
+              LEFT VISUAL
+          ================================================= */}
+
           <div
             className="about-visual"
             data-reveal
@@ -335,11 +445,13 @@ export default function About() {
               </div>
 
               <div className="visual-description">
-                Digital products built with precision,
-                creativity and modern technology.
+                Digital products built with
+                precision, creativity and
+                modern technology.
               </div>
 
               <div className="visual-bottom">
+
                 <div>
                   <span>CODE</span>
                   <strong>01</strong>
@@ -354,6 +466,7 @@ export default function About() {
                   <span>SYSTEM</span>
                   <strong>03</strong>
                 </div>
+
               </div>
             </div>
 
@@ -361,8 +474,13 @@ export default function About() {
             <div className="visual-frame frame-two" />
           </div>
 
-          {/* RIGHT SIDE */}
+          {/* =================================================
+              RIGHT CONTENT
+          ================================================= */}
+
           <div className="about-content">
+
+            {/* Heading */}
 
             <div
               className="about-heading"
@@ -383,15 +501,18 @@ export default function About() {
               </div>
 
               <p>
-                I'm a developer who loves designing systems
-                and shipping them. On every project I try to
-                bring together precision and speed. Beyond
-                writing code, I also care deeply about design
+                I'm a developer who loves
+                designing systems and shipping
+                them. On every project I try to
+                bring together precision and
+                speed. Beyond writing code, I
+                also care deeply about design
                 and user experience.
               </p>
             </div>
 
-            {/* Experience circle */}
+            {/* Experience */}
+
             <div
               className="experience-orb"
               data-reveal
@@ -402,12 +523,17 @@ export default function About() {
 
               <div className="orb-content">
                 <strong>4+</strong>
+
                 <span>YEARS</span>
-                <small>EXPERIENCE</small>
+
+                <small>
+                  EXPERIENCE
+                </small>
               </div>
             </div>
 
             {/* Facts */}
+
             <div
               className="about-facts"
               data-reveal
@@ -423,12 +549,16 @@ export default function About() {
           </div>
         </div>
 
-        {/* What I do */}
+        {/* =================================================
+            SERVICES
+        ================================================= */}
+
         <div
           className="about-services"
           data-reveal
         >
           <div className="services-heading">
+
             <div className="services-title">
               <span>//</span>
               WHAT I DO
@@ -442,6 +572,7 @@ export default function About() {
               <span>04</span>
               SERVICES
             </div>
+
           </div>
 
           <div className="services-grid">
@@ -454,12 +585,16 @@ export default function About() {
           </div>
         </div>
 
-        {/* Bottom */}
+        {/* =================================================
+            BOTTOM
+        ================================================= */}
+
         <div
           className="about-bottom"
           data-reveal
         >
           <div className="about-bottom-left">
+
             <span className="bottom-status">
               <i />
               AVAILABLE FOR WORK
@@ -468,6 +603,7 @@ export default function About() {
             <span className="bottom-divider" />
 
             <span>2026</span>
+
           </div>
 
           <div className="about-bottom-center">
@@ -476,18 +612,23 @@ export default function About() {
           </div>
 
           <div className="about-bottom-right">
+
             <span>SCROLL</span>
 
             <div className="scroll-arrow">
               ↓
             </div>
+
           </div>
         </div>
 
       </div>
 
-      {/* Mouse glow */}
+      {/* =================================================
+          MOUSE GLOW
+      ================================================= */}
+
       <div className="about-cursor-glow" />
     </section>
   );
-} 
+}
