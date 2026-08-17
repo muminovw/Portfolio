@@ -52,6 +52,9 @@
 
     color: var(--ink);
 
+    /* max-width: 1200px;
+    margin: 0 auto; */
+
     box-sizing: border-box;
 }
 
@@ -1834,5 +1837,89 @@
         box-shadow: none;
 
         transform: none;
+    }
+}
+/* =========================================================
+   PREMIUM CONTENT CONTAINER — MAX 1200px
+   Background remains FULL WIDTH
+========================================================= */
+
+.process-section {
+    --content-width: 1200px;
+}
+
+/* Main content blocks */
+.process-section > .section-head,
+.process-section > .timeline,
+.process-section > .skills-block,
+.process-section > .process-footer {
+    width: min(
+        calc(100% - 40px),
+        var(--content-width)
+    );
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Keep existing vertical spacing */
+.process-section > .section-head {
+    margin-bottom: 110px;
+}
+
+.process-section > .timeline {
+    margin-top: 0;
+}
+
+.process-section > .skills-block {
+    margin-top: 120px;
+}
+
+.process-section > .process-footer {
+    margin-top: 140px;
+}
+
+
+/* =========================================================
+   RESPONSIVE CONTENT WIDTH
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .process-section > .section-head,
+    .process-section > .timeline,
+    .process-section > .skills-block,
+    .process-section > .process-footer {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   LARGE SCREENS
+========================================================= */
+
+@media (min-width: 1280px) {
+
+    .process-section > .section-head,
+    .process-section > .timeline,
+    .process-section > .skills-block,
+    .process-section > .process-footer {
+        width: 1200px;
+    }
+}
+
+
+/* =========================================================
+   ULTRA LARGE SCREENS
+========================================================= */
+
+@media (min-width: 1600px) {
+
+    .process-section > .section-head,
+    .process-section > .timeline,
+    .process-section > .skills-block,
+    .process-section > .process-footer {
+        width: min(1200px, calc(100% - 80px));
     }
 }
