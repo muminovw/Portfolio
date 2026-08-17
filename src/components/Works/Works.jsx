@@ -11,53 +11,27 @@ function WorkCard({ project, index }) {
         "--project-bg": project.background,
         "--project-text": project.textColor,
       }}
-      initial={{
-        opacity: 0,
-        y: 100,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.15,
-      }}
-      transition={{
-        duration: 0.8,
-        delay: index * 0.08,
-      }}
-      whileHover={{
-        y: -8,
-      }}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="work-card-border" />
 
       {/* CARD HEADER */}
       <div className="work-card-header">
-        <div className="work-project-number">
-          {project.id}
-        </div>
-
-        <div className="work-project-category">
-          {project.category}
-        </div>
+        <span className="work-project-number">{project.id}</span>
+        <span className="work-project-category">{project.category}</span>
       </div>
 
       {/* REAL WEBSITE PREVIEW */}
-      <div
-        className="work-preview"
-        style={{
-          background: project.background,
-        }}
-      >
+      <div className="work-preview">
         <div className="preview-topbar">
           <div className="preview-dots">
             <span />
             <span />
             <span />
           </div>
-
           <div className="preview-url">
             {project.url !== "#"
               ? project.url.replace("https://", "")
@@ -67,11 +41,13 @@ function WorkCard({ project, index }) {
 
         <div className="preview-screen">
           {project.url !== "#" ? (
-            <iframe
-              src={project.url}
-              title={project.title}
-              loading="lazy"
-            />
+            <div className="iframe-wrapper">
+              <iframe
+                src={project.url}
+                title={project.title}
+                loading="lazy"
+              />
+            </div>
           ) : (
             <div className="private-project">
               <span>PRIVATE</span>
@@ -84,36 +60,22 @@ function WorkCard({ project, index }) {
         <div
           className="preview-glow"
           style={{
-            background: `radial-gradient(circle, ${project.color}22, transparent 65%)`,
+            background: `radial-gradient(circle, ${project.color}33, transparent 70%)`,
           }}
         />
       </div>
 
       {/* INFORMATION */}
       <div className="work-card-content">
-
         <div className="work-card-title">
-          <h3>
-            {project.title}
-          </h3>
-
-          <span>
-            {project.subtitle}
-          </span>
+          <h3>{project.title}</h3>
+          <span>{project.subtitle}</span>
         </div>
 
-        <p>
-          {project.description}
-        </p>
+        <p>{project.description}</p>
 
         <div className="work-card-bottom">
-
-          <div
-            className="project-status"
-            style={{
-              color: project.color,
-            }}
-          >
+          <div className="project-status" style={{ color: project.color }}>
             <span />
             LIVE PROJECT
           </div>
@@ -133,7 +95,6 @@ function WorkCard({ project, index }) {
               <span>↗</span>
             </a>
           )}
-
         </div>
       </div>
     </motion.article>
@@ -143,28 +104,17 @@ function WorkCard({ project, index }) {
 export default function Work() {
   return (
     <section className="work-section" id="work">
-
-      {/* BACKGROUND */}
       <div className="work-grid" />
       <div className="work-glow work-glow-one" />
       <div className="work-glow work-glow-two" />
 
       <div className="work-container">
-
-        {/* HEADER */}
         <motion.div
           className="work-header"
-          initial={{
-            opacity: 0,
-            y: 50,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
           <div className="work-label">
             <span />
@@ -174,28 +124,20 @@ export default function Work() {
           </div>
 
           <h2>
-            MY
-            <span>WORKS.</span>
+            MY <span>WORKS.</span>
           </h2>
 
           <p>
-            Digital products, platforms and experiences
-            designed and developed with attention to
-            interaction, performance and visual identity.
+            Digital products, platforms and experiences designed and developed
+            with attention to interaction, performance and visual identity.
           </p>
         </motion.div>
 
-        {/* CARDS */}
         <div className="work-list">
           {WORKS.map((project, index) => (
-            <WorkCard
-              key={project.id}
-              project={project}
-              index={index}
-            />
+            <WorkCard key={project.id} project={project} index={index} />
           ))}
         </div>
-
       </div>
     </section>
   );

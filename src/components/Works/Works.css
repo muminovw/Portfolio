@@ -1,88 +1,45 @@
+/* =========================
+   WORK SECTION GLOBAL
+========================= */
+
 .work-section {
   position: relative;
   width: 100%;
   min-height: 100vh;
-
-  padding: 150px 0;
-
+  padding: 100px 0;
   overflow: hidden;
-
   background: #050705;
-  color: white;
+  color: #ffffff;
 }
-
-/* =========================
-   BACKGROUND
-========================= */
 
 .work-grid {
   position: absolute;
   inset: 0;
-
-  background-image:
-    linear-gradient(
-      rgba(156, 255, 0, 0.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(156, 255, 0, 0.035) 1px,
-      transparent 1px
-    );
-
-  background-size: 70px 70px;
-
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 15%,
-    black 80%,
-    transparent
-  );
-
+  background-image: 
+    linear-gradient(rgba(156, 255, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(156, 255, 0, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
   pointer-events: none;
 }
 
 .work-glow {
   position: absolute;
-
-  width: 600px;
-  height: 600px;
-
+  width: min(500px, 70vw);
+  height: min(500px, 70vw);
   border-radius: 50%;
-
-  filter: blur(120px);
-
+  filter: blur(100px);
   opacity: 0.08;
-
   pointer-events: none;
 }
 
-.work-glow-one {
-  top: 10%;
-  left: -300px;
-
-  background: #9cff00;
-}
-
-.work-glow-two {
-  right: -300px;
-  bottom: 10%;
-
-  background: #9cff00;
-}
-
-/* =========================
-   CONTAINER
-========================= */
+.work-glow-one { top: 5%; left: -150px; background: #9cff00; }
+.work-glow-two { right: -150px; bottom: 5%; background: #9cff00; }
 
 .work-container {
-  width: calc(100% - 40px);
-
-  max-width: 1200px;
-
+  width: min(1200px, 92%);
   margin: 0 auto;
-
   position: relative;
   z-index: 2;
 }
@@ -92,140 +49,86 @@
 ========================= */
 
 .work-header {
-  margin-bottom: 90px;
+  margin-bottom: 60px;
 }
 
 .work-label {
   display: flex;
   align-items: center;
-  gap: 12px;
-
+  gap: 10px;
   color: #777d73;
-
-  font-size: 10px;
-
+  font-size: 11px;
   font-weight: 600;
-
-  letter-spacing: 0.25em;
+  letter-spacing: 0.2em;
 }
 
 .work-label span {
-  width: 7px;
-  height: 7px;
-
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-
   background: #9cff00;
-
-  box-shadow: 0 0 15px #9cff00;
+  box-shadow: 0 0 12px #9cff00;
+  flex-shrink: 0;
 }
 
 .work-label i {
-  width: 60px;
+  width: 40px;
   height: 1px;
-
   background: rgba(156, 255, 0, 0.3);
 }
 
 .work-header h2 {
-  margin: 30px 0 25px;
-
-  font-size: clamp(70px, 11vw, 150px);
-
-  line-height: 0.8;
-
-  letter-spacing: -0.08em;
-
+  margin: 20px 0 15px;
+  font-size: clamp(42px, 8vw, 120px);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
   font-weight: 800;
 }
 
 .work-header h2 span {
   display: block;
-
   color: transparent;
-
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
 }
 
 .work-header p {
-  max-width: 480px;
-
+  max-width: 460px;
   margin-left: auto;
-
-  color: #70776d;
-
+  color: #80877c;
   font-size: 14px;
-
-  line-height: 1.8;
-}
-
-/* =========================
-   LIST
-========================= */
-
-.work-list {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 50px;
+  line-height: 1.7;
 }
 
 /* =========================
    CARD
 ========================= */
 
+.work-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
 .work-card {
   position: relative;
-
   width: 100%;
-
-  background: var(--project-bg);
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
+  background: var(--project-bg, #080b09);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   overflow: hidden;
-
-  transition:
-    border-color 0.5s ease,
-    box-shadow 0.5s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
-
-.work-card:hover {
-  border-color: color-mix(
-    in srgb,
-    var(--project-color) 45%,
-    transparent
-  );
-
-  box-shadow:
-    0 30px 100px rgba(0, 0, 0, 0.5),
-    0 0 70px color-mix(
-      in srgb,
-      var(--project-color) 8%,
-      transparent
-    );
-}
-
-/* top glowing line */
 
 .work-card-border {
   position: absolute;
-
   top: 0;
   left: 0;
-
   width: 100%;
   height: 2px;
-
   background: var(--project-color);
-
   transform: scaleX(0);
-
   transform-origin: left;
-
-  transition: transform 0.7s ease;
-
+  transition: transform 0.5s ease;
   z-index: 10;
 }
 
@@ -233,98 +136,66 @@
   transform: scaleX(1);
 }
 
-/* =========================
-   HEADER
-========================= */
-
+/* CARD HEADER */
 .work-card-header {
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
-  padding: 22px 25px;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .work-project-number {
   color: var(--project-color);
-
   font-family: monospace;
-
-  font-size: 13px;
-
+  font-size: 12px;
   font-weight: 700;
 }
 
 .work-project-category {
-  color: rgba(255, 255, 255, 0.42);
-
+  color: rgba(255, 255, 255, 0.4);
   font-size: 9px;
-
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 /* =========================
-   REAL PREVIEW
+   PREVIEW & IFRAME FIXES
 ========================= */
 
 .work-preview {
   position: relative;
-
   width: 100%;
-
-  height: 620px;
-
+  height: 380px;
   overflow: hidden;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--project-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* browser top */
-
 .preview-topbar {
-  position: absolute;
-
-  top: 0;
-  left: 0;
-
+  position: relative;
   width: 100%;
-
-  height: 38px;
-
+  height: 36px;
   display: flex;
-
   align-items: center;
-
-  gap: 20px;
-
-  padding: 0 15px;
-
-  background: rgba(0, 0, 0, 0.75);
-
-  backdrop-filter: blur(15px);
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
+  justify-content: space-between;
+  padding: 0 14px;
+  background: rgba(10, 13, 11, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   z-index: 5;
 }
 
 .preview-dots {
   display: flex;
-
-  gap: 6px;
+  gap: 5px;
 }
 
 .preview-dots span {
-  width: 6px;
-  height: 6px;
-
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .preview-dots span:first-child {
@@ -332,313 +203,198 @@
 }
 
 .preview-url {
-  padding: 5px 15px;
-
-  border-radius: 20px;
-
+  padding: 3px 10px;
+  border-radius: 12px;
   background: rgba(255, 255, 255, 0.05);
-
-  color: rgba(255, 255, 255, 0.35);
-
+  color: rgba(255, 255, 255, 0.4);
   font-family: monospace;
-
-  font-size: 8px;
+  font-size: 9px;
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-
-/* ACTUAL WEBSITE */
 
 .preview-screen {
-  position: absolute;
-
-  top: 38px;
-  left: 0;
-
+  position: relative;
   width: 100%;
-
-  height: calc(100% - 38px);
-
+  height: calc(100% - 36px);
   overflow: hidden;
-
-  background: var(--project-bg);
 }
 
-.preview-screen iframe {
-  display: block;
-
+/* Iframe simulyatsiyasi (Desktop va Mobile uchun bir xil ixcham ko'rsatish) */
+.iframe-wrapper {
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  position: relative;
+}
 
+.iframe-wrapper iframe {
+  width: 100%;
+  height: 100%;
   border: none;
-
-  background: white;
-
-  transition:
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.8s ease;
+  background: #ffffff;
+  pointer-events: none; /* Skroll qilishda xalaqit bermasligi uchun */
 }
 
-/* IMPORTANT:
-   site preview stays visible */
-.work-card:hover .preview-screen iframe {
-  transform: scale(1.025);
-
-  filter: saturate(1.05);
+/* PRIVATE PROJECT */
+.private-project {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--project-color);
+  text-align: center;
 }
 
-/* subtle color glow,
-   NOT covering website */
+.private-project span { font-size: 10px; letter-spacing: 0.2em; }
+.private-project strong { font-size: clamp(24px, 5vw, 42px); letter-spacing: -0.04em; }
+.private-project small { color: rgba(255, 255, 255, 0.3); font-size: 8px; }
 
 .preview-glow {
   position: absolute;
-
-  width: 450px;
-  height: 450px;
-
-  right: -250px;
-  top: -250px;
-
-  border-radius: 50%;
-
-  filter: blur(80px);
-
+  inset: 0;
   pointer-events: none;
-
-  opacity: 0.5;
-
-  transition: opacity 0.5s ease;
-}
-
-.work-card:hover .preview-glow {
-  opacity: 0.8;
+  z-index: 2;
 }
 
 /* =========================
-   PRIVATE PROJECT
-========================= */
-
-.private-project {
-  height: 100%;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 12px;
-
-  color: var(--project-color);
-}
-
-.private-project span {
-  font-size: 10px;
-
-  letter-spacing: 0.3em;
-}
-
-.private-project strong {
-  font-size: clamp(40px, 8vw, 100px);
-
-  letter-spacing: -0.07em;
-}
-
-.private-project small {
-  color: rgba(255, 255, 255, 0.35);
-
-  font-size: 9px;
-
-  letter-spacing: 0.2em;
-}
-
-/* =========================
-   CONTENT
+   CONTENT & BOTTOM
 ========================= */
 
 .work-card-content {
-  padding: 35px 30px 30px;
+  padding: 24px 20px;
 }
 
 .work-card-title h3 {
   margin: 0;
-
-  color: var(--project-text);
-
-  font-size: clamp(35px, 5vw, 60px);
-
-  line-height: 0.9;
-
-  letter-spacing: -0.06em;
-
+  color: var(--project-text, #fff);
+  font-size: clamp(22px, 4vw, 36px);
+  line-height: 1;
+  letter-spacing: -0.03em;
   text-transform: uppercase;
 }
 
 .work-card-title span {
   display: block;
-
-  margin-top: 10px;
-
+  margin-top: 6px;
   color: var(--project-color);
-
-  font-size: 12px;
-
-  letter-spacing: 0.12em;
-
+  font-size: 10px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .work-card-content p {
-  max-width: 650px;
-
-  margin: 25px 0 30px;
-
-  color: rgba(255, 255, 255, 0.45);
-
+  margin: 16px 0 20px;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 13px;
-
-  line-height: 1.8;
+  line-height: 1.6;
 }
-
-/* =========================
-   BOTTOM
-========================= */
 
 .work-card-bottom {
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
-  padding-top: 20px;
-
+  padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 12px;
 }
 
 .project-status {
   display: flex;
-
   align-items: center;
-
-  gap: 8px;
-
+  gap: 6px;
   font-family: monospace;
-
-  font-size: 9px;
-
-  letter-spacing: 0.15em;
+  font-size: 10px;
+  letter-spacing: 0.1em;
 }
 
 .project-status span {
   width: 6px;
   height: 6px;
-
   border-radius: 50%;
-
   background: currentColor;
-
-  box-shadow: 0 0 12px currentColor;
-
-  animation: statusPulse 2s infinite;
-}
-
-@keyframes statusPulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.35;
-  }
+  box-shadow: 0 0 8px currentColor;
 }
 
 .project-view {
-  display: flex;
-
+  display: inline-flex;
   align-items: center;
-
-  gap: 15px;
-
-  padding: 12px 18px;
-
+  gap: 8px;
+  padding: 10px 16px;
   border: 1px solid;
-
-  font-size: 9px;
-
+  border-radius: 6px;
+  font-size: 10px;
   font-weight: 700;
-
-  letter-spacing: 0.15em;
-
+  letter-spacing: 0.1em;
   text-decoration: none;
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .project-view:hover {
   background: var(--project-color);
-
   color: #050505 !important;
-
-  transform: translateY(-3px);
-}
-
-.project-view span {
-  font-size: 17px;
 }
 
 /* =========================
-   MOBILE
+   MOBILE RESPONSIVE FIXES (768px va undan kichik)
 ========================= */
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .work-section {
-    padding: 90px 0;
-  }
-
-  .work-container {
-    width: calc(100% - 25px);
+    /* object-fit: cover; */
+    padding: 60px 0;
   }
 
   .work-header {
-    margin-bottom: 60px;
+    margin-bottom: 35px;
   }
 
   .work-header p {
-    margin-left: 0;
-  }
-
-  .work-card-header {
-    padding: 17px;
+    margin-top: 12px;
   }
 
   .work-preview {
-    height: 400px;
+    object-fit: cover;
+    height: 260px; /* Mobil qurilmada balandlikni optimal ixchamlashtirish */
+  }
+
+  .preview-topbar {
+    height: 32px;
+    padding: 0 10px;
+  }
+
+  .preview-url {
+    font-size: 8px;
+    max-width: 60%;
   }
 
   .work-card-content {
-    padding: 25px 20px;
-  }
-
-  .work-card-title h3 {
-    font-size: 38px;
+    object-fit: cover;
+    padding: 18px 15px;
   }
 
   .work-card-bottom {
-    align-items: flex-start;
-
     flex-direction: column;
-
-    gap: 20px;
+    align-items: stretch;
+    gap: 12px;
   }
 
   .project-view {
     width: 100%;
-
     justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .work-preview {
+    height: 210px;
+  }
+  
+  .work-card-title h3 {
+    font-size: 20px;
   }
 }
